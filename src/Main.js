@@ -4,21 +4,33 @@ import { PropTypes } from "prop-types";
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
 import { GRAPHQL_ENDPOINT } from "../config";
+import { insertUsers } from "../data/mutations";
 
 //apollo-boost @apollo/react-hooks graphql
 
-const Main = ({ token }) => {
+const Main = ({ token, user }) => {
   const [client, setClient] = useState(null)
 
   useEffect(() => {
-    setClient(
-      new ApolloClient({
-        uri: GRAPHQL_ENDPOINT,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+    const { id, name, isNewUser } = user
+
+    const client = new ApolloClient({
+      uri: GRAPHQL_ENDPOINT,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    if (isNewUser) {
+      console.log('going to create! ', user)
+      client.mutate({
+        mutation: insertUsers,
+        variables: { id, name }
       })
-    )
+    }
+
+    setClient(client)
+
   }, [])
 
   if (!client) {
@@ -28,7 +40,7 @@ const Main = ({ token }) => {
   return (
     <ApolloProvider client={ client }>
       <View>
-        <Text>Todo List</Text>
+        <Text>Welcome {user.name}! Todo List</Text>
       </View>
     </ApolloProvider>
   )
@@ -36,6 +48,7 @@ const Main = ({ token }) => {
 
 Main.propTypes = {
   token: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default Main

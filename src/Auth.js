@@ -11,6 +11,7 @@ import {
   AUTH_CLIENT_ID,
   AUTH_DOMAIN,
   ID_TOKEN_KEY,
+  AUTH_NAMESPACE,
   NONCE_KEY }
 from "../config";
 
@@ -22,6 +23,7 @@ const generateNonce = async () => {
 
 const Auth = ({ onLogin, onLogout, token }) => {
   console.log('onLogin!', onLogin)
+
   const handleLoginPress = async () => {
 
     console.log('AUTH_DOMAIN', AUTH_DOMAIN)
@@ -72,7 +74,7 @@ const Auth = ({ onLogin, onLogout, token }) => {
       console.log('storedNonce', storedNonce)
       if (nonce === storedNonce) {
         SecureStore.setItemAsync(
-          ID_TOKEN_KEY, tokenToSave).then(onLogin)
+          ID_TOKEN_KEY, tokenToSave).then(() => { onLogin(decodedToken[AUTH_NAMESPACE].isNewUser) })
       } else {
         Alert.alert('Error', 'Nonces dont match')
         return
