@@ -25,8 +25,13 @@ const AddTodo = () => {
           insertTodo({
             variables: { text },
             refetchQueries: [{ query: GET_TODOS}]
+          }).then(result => {
+            console.log('Inserted a new todo', result)
+            setText('')
+          }).catch(err => {
+            console.log('Add todo error', err)
           })
-          setText('')
+
         }}
         disabled={loading || text === ''}
       >

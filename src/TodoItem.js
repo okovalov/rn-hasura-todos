@@ -7,6 +7,7 @@ import { GET_TODOS } from "../data/queries";
 
 const TodoItem = ({ item }) => {
   const { id, text, is_completed } = item
+
   const [updateTodo, { loading: updateLoading, error: updateError }] = useMutation(UPDATE_TODO)
   const [deleteTodo, { loading: deleteLoading, error: deleteError }] = useMutation(DELETE_TODO)
 
@@ -26,7 +27,7 @@ const TodoItem = ({ item }) => {
           if (!updateLoading) {
             updateTodo({
               variables: { id, isCompleted: !is_completed },
-            })
+            }).catch(err => { console.log('Update todo error - ', err)})
           }
         }}
       >
@@ -39,8 +40,8 @@ const TodoItem = ({ item }) => {
           if (!deleteLoading) {
             deleteTodo({
               variables: { id },
-              refetchQueries: [{ query: GET_TODOS}]
-            })
+              refetchQueries: [{ query: GET_TODOS }]
+            }).catch(err => { console.log('Delete todo error - ', err)})
           }
         }}
         disabled={ deleteLoading }

@@ -22,7 +22,7 @@ const Main = ({ token, user }) => {
     })
 
     if (isNewUser) {
-      console.log('going to create! ', user)
+      console.log('going to create a new user', user)
       client.mutate({
         mutation: INSERT_USERS,
         variables: { id, name }

@@ -22,8 +22,6 @@ const generateNonce = async () => {
 }
 
 const Auth = ({ onLogin, onLogout, token }) => {
-  console.log('onLogin!', onLogin)
-
   const handleLoginPress = async () => {
 
     console.log('AUTH_DOMAIN', AUTH_DOMAIN)
@@ -54,6 +52,7 @@ const Auth = ({ onLogin, onLogout, token }) => {
     const decodedToken = jwtDecoder(token)
 
     console.log('decodedToken', decodedToken)
+
     const { nonce, sub, email, name, exp } = decodedToken
 
     const tokenToSave = JSON.stringify({
@@ -68,6 +67,7 @@ const Auth = ({ onLogin, onLogout, token }) => {
 
     SecureStore.getItemAsync(NONCE_KEY).then(storedNonce => {
       console.log('storedNonce', storedNonce)
+
       if (nonce === storedNonce) {
         SecureStore.setItemAsync(
           ID_TOKEN_KEY, tokenToSave).then(() => { onLogin(decodedToken[AUTH_NAMESPACE].isNewUser) })
