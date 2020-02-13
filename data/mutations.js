@@ -18,3 +18,16 @@ export const INSERT_TODO = gql`
     }
   }
 `
+export const UPDATE_TODO = gql`
+  mutation($id: Int, $isCompleted: Boolean) {
+    update_todos(
+       where: { id: { _eq: $id} }
+       _set: { is_completed: $isCompleted }
+      ) {
+      returning {
+        id
+        is_completed
+      }
+    }
+  }
+`
