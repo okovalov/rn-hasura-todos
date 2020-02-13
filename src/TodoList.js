@@ -1,13 +1,17 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { StyleSheet, Text, FlatList, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, FlatList, View, ActivityIndicator, Alert } from "react-native";
 import TodoItem from "./TodoItem";
 import { GET_TODOS } from "../data/queries";
 
 const TodoList = () => {
-  const { loading, error, data } = useQuery(GET_TODOS)
+  const res = useQuery(GET_TODOS)
+  const { loading, error, data } =  res
 
-  if (error) return <View><Text>`Error! ${error.message}`</Text></View>
+  if (error) {
+    Alert.alert('Error', error.message || 'Something went wrong while logging in')
+    return <View><Text>Error! ${error.message}</Text></View>
+  }
 
   return (
     <View style={styles.container}>
