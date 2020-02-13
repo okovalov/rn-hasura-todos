@@ -31,3 +31,10 @@ export const UPDATE_TODO = gql`
     }
   }
 `
+export const DELETE_TODO = gql`
+  mutation($id: Int) {
+    delete_todos(where: {id: {_eq: $id}}) {
+      affected_rows
+    }
+  }
+`
