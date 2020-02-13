@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { PropTypes } from "prop-types";
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
@@ -33,7 +33,7 @@ const Main = ({ token, user }) => {
   }, [])
 
   if (!client) {
-    return (<View><Text>Loading...</Text></View>)
+    return (<ActivityIndicator size="large" color="#0000ff" />)
   }
 
   return (
