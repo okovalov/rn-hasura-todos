@@ -2,7 +2,7 @@ import gql from "graphql-tag"
 
 export const GET_TODOS = gql`
   {
-    todos {
+    todos(order_by: { created_at: desc }) {
       id
       text
       is_completed
