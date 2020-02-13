@@ -5,8 +5,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
 import { GRAPHQL_ENDPOINT } from "../config";
 import { insertUsers } from "../data/mutations";
-
-//apollo-boost @apollo/react-hooks graphql
+import TodoList from "./TodoList";
 
 const Main = ({ token, user }) => {
   const [client, setClient] = useState(null)
@@ -41,6 +40,7 @@ const Main = ({ token, user }) => {
     <ApolloProvider client={ client }>
       <View>
         <Text>Welcome {user.name}! Todo List</Text>
+        <TodoList />
       </View>
     </ApolloProvider>
   )
