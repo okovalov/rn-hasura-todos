@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Main from "./src/Main"
 import Auth from "./src/Auth"
-import { ID_TOKEN_KEY } from "./config";
+import { ID_TOKEN_KEY } from "./config"; // config.js is outside of repository, see config.example.js
 import * as SecureStore from "expo-secure-store";
 
 const App = () => {

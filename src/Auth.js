@@ -13,7 +13,7 @@ import {
   ID_TOKEN_KEY,
   AUTH_NAMESPACE,
   NONCE_KEY }
-from "../config";
+from "../config"; // config.js is outside of repository, see config.example.js
 
 const generateNonce = async () => {
   const nonce = String.fromCharCode.apply(null, await Random.getRandomBytesAsync(16))

@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { PropTypes } from "prop-types";
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
-import { GRAPHQL_ENDPOINT } from "../config";
+import { GRAPHQL_ENDPOINT } from "../config"; // config.js is outside of repository, see config.example.js
 import { INSERT_USERS } from "../data/mutations";
 import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
