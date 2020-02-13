@@ -50,10 +50,6 @@ const Auth = ({ onLogin, onLogout, token }) => {
       })
   }
 
-  const handleLogoutPress = async () => {
-    SecureStore.deleteItemAsync(ID_TOKEN_KEY).then(onLogout)
-  }
-
   const decodeToken = token => {
     const decodedToken = jwtDecoder(token)
 
@@ -84,7 +80,7 @@ const Auth = ({ onLogin, onLogout, token }) => {
   }
 
   return token ?
-    <Button title="Logout" onPress={ handleLogoutPress } /> :
+    <Button title="Logout" onPress={ onLogout } /> :
     <Button title="Login" onPress={ handleLoginPress } />
 }
 

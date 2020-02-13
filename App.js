@@ -21,17 +21,25 @@ const App = () => {
         if (exp > Math.floor(new Date().getTime() / 1000)) {
           setToken(token)
           setUser({ id, name, isNewUser})
+        } else {
+          handleLogout()
         }
       }
     })
   }
+
+  const handleLogout = () => {
+    SecureStore.deleteItemAsync(ID_TOKEN_KEY)
+    setToken(null)
+  }
+
   return (
     <View style={styles.container}>
       { token && user && <Main token={ token } user={ user } /> }
        <Auth
         token={ token }
         onLogin={ handleLogin }
-        onLogout={ () => setToken(null) } />
+        onLogout={ handleLogout } />
     </View>
   );
 }
