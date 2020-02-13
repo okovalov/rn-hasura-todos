@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
 import { GRAPHQL_ENDPOINT } from "../config";
-import { insertUsers } from "../data/mutations";
+import { INSERT_USERS } from "../data/mutations";
 import TodoList from "./TodoList";
 
 const Main = ({ token, user }) => {
@@ -23,7 +23,7 @@ const Main = ({ token, user }) => {
     if (isNewUser) {
       console.log('going to create! ', user)
       client.mutate({
-        mutation: insertUsers,
+        mutation: INSERT_USERS,
         variables: { id, name }
       })
     }

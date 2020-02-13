@@ -1,6 +1,6 @@
 import gql from "graphql-tag"
 
-export const getTodos = gql`
+export const GET_TODOS = gql`
   {
     todos {
       id

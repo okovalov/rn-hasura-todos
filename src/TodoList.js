@@ -2,10 +2,10 @@ import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { StyleSheet, Text, FlatList, View } from "react-native";
 import TodoItem from "./TodoItem";
-import { getTodos } from "../data/queries";
+import { GET_TODOS } from "../data/queries";
 
 const TodoList = () => {
-  const { loading, error, data } = useQuery(getTodos)
+  const { loading, error, data } = useQuery(GET_TODOS)
 
   if (loading) return <View><Text>`Loading...`</Text></View>
   if (error) return <View><Text>`Error! ${error.message}`</Text></View>
