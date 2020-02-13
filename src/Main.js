@@ -6,6 +6,7 @@ import ApolloClient from 'apollo-boost'
 import { GRAPHQL_ENDPOINT } from "../config";
 import { INSERT_USERS } from "../data/mutations";
 import TodoList from "./TodoList";
+import AddTodo from "./AddTodo";
 
 const Main = ({ token, user }) => {
   const [client, setClient] = useState(null)
@@ -40,6 +41,7 @@ const Main = ({ token, user }) => {
     <ApolloProvider client={ client }>
       <View>
         <Text>Welcome {user.name}! Todo List</Text>
+        <AddTodo />
         <TodoList />
       </View>
     </ApolloProvider>
